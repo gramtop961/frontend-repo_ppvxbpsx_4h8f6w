@@ -1,50 +1,35 @@
-import React from 'react';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import Navbar from './components/Navbar.jsx';
-import HomePage from './components/pages/HomePage.jsx';
-import ProfilePage from './components/pages/ProfilePage.jsx';
-import JobsHub from './components/pages/JobsHub.jsx';
-import TradeCenter from './components/pages/TradeCenter.jsx';
-import VerificationHub from './components/pages/VerificationHub.jsx';
-import EduCentre from './components/pages/EduCentre.jsx';
-import YuktiBot from './components/pages/YuktiBot.jsx';
+import Navbar from './components/Navbar';
+import HeroSection from './components/HeroSection';
+import FeaturedJobs from './components/FeaturedJobs';
+import CarbonTradeOverview from './components/CarbonTradeOverview';
 
-function App() {
+export default function App() {
   return (
-    <div className="min-h-screen bg-gradient-to-b from-[#0b1f3a] via-[#0a2a2a] to-[#03121a] text-white">
-      {/* Top gradient aura */}
-      <div className="pointer-events-none fixed inset-0 opacity-40" aria-hidden>
-        <div
-          className="absolute -top-32 left-1/2 -translate-x-1/2 w-[90vw] max-w-5xl h-[60vh] rounded-full blur-3xl"
-          style={{
-            background:
-              'radial-gradient(ellipse at center, rgba(25,118,210,0.55), rgba(67,160,71,0.35) 60%, transparent 70%)',
-          }}
-        />
-      </div>
-
-      <BrowserRouter>
-        <Navbar />
-        <Routes>
-          <Route path="/" element={<HomePage />} />
-          <Route path="/profile" element={<ProfilePage />} />
-          <Route path="/jobs" element={<JobsHub />} />
-          <Route path="/trade" element={<TradeCenter />} />
-          <Route path="/verify" element={<VerificationHub />} />
-          <Route path="/edu" element={<EduCentre />} />
-          <Route path="/bot" element={<YuktiBot />} />
-        </Routes>
-
-        <footer className="relative z-10 mt-20 border-t border-white/10">
-          <div className="mx-auto max-w-7xl px-6 py-10 text-sm text-white/70">
-            <p>
-              Yukti — Empowering green work, learning, and fair carbon trading. Made with a green–blue futuristic theme for impact and trust.
-            </p>
+    <div className="min-h-screen bg-gradient-to-b from-white via-sky-50 to-emerald-50">
+      <Navbar />
+      <main>
+        <HeroSection />
+        <FeaturedJobs />
+        <CarbonTradeOverview />
+        <section id="verify" className="py-12">
+          <div className="max-w-7xl mx-auto px-4">
+            <div className="rounded-2xl bg-white ring-1 ring-black/5 p-6 shadow-sm">
+              <h2 className="text-xl font-semibold text-slate-900">Impact Verification</h2>
+              <p className="mt-2 text-slate-600">Upload proof of work and get AI-assisted verification with audit trails. Coming soon.</p>
+              <div className="mt-4 grid sm:grid-cols-2 gap-4">
+                <div className="rounded-xl bg-emerald-50 text-emerald-800 p-4">Smart checks for authenticity</div>
+                <div className="rounded-xl bg-sky-50 text-sky-800 p-4">Fast approvals and badges</div>
+              </div>
+            </div>
           </div>
-        </footer>
-      </BrowserRouter>
+        </section>
+      </main>
+      <footer className="border-t border-black/5 bg-white/80 backdrop-blur">
+        <div className="max-w-7xl mx-auto px-4 py-6 text-sm text-slate-600 flex flex-col sm:flex-row items-center justify-between">
+          <p>© {new Date().getFullYear()} Yukti • Green-Blue Future</p>
+          <a href="#home" className="text-[#1976D2] hover:underline">Back to top</a>
+        </div>
+      </footer>
     </div>
   );
 }
-
-export default App;

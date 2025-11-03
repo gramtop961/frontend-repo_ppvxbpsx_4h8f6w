@@ -1,79 +1,25 @@
-import React from 'react';
-import { Link, NavLink, useLocation } from 'react-router-dom';
-import { Leaf, Home, User, Briefcase, TrendingUp, ShieldCheck, BookOpen, Bot } from 'lucide-react';
-
-const tabs = [
-  { to: '/', label: 'Home', icon: Home },
-  { to: '/jobs', label: 'Jobs & Hub', icon: Briefcase },
-  { to: '/trade', label: 'Trade Center', icon: TrendingUp },
-  { to: '/verify', label: 'Verification', icon: ShieldCheck },
-  { to: '/edu', label: 'EduCentre', icon: BookOpen },
-  { to: '/bot', label: 'Yukti Bot', icon: Bot },
-  { to: '/profile', label: 'Profile', icon: User },
-];
+import { Home, Briefcase, TrendingUp, ShieldCheck, Leaf } from 'lucide-react';
 
 export default function Navbar() {
-  const location = useLocation();
-
   return (
-    <div className="sticky top-0 z-30 backdrop-blur supports-[backdrop-filter]:bg-white/5 bg-white/5 border-b border-white/10">
-      <div className="mx-auto max-w-7xl px-4 sm:px-6">
-        <div className="flex items-center justify-between h-16">
-          <Link to="/" className="flex items-center gap-2 text-white">
-            <div className="h-9 w-9 rounded-xl bg-gradient-to-br from-[#43A047] to-[#1976D2] grid place-items-center shadow-md">
-              <Leaf className="h-5 w-5 text-white" />
-            </div>
-            <span className="font-semibold tracking-tight">Yukti</span>
-          </Link>
-          <nav className="hidden md:flex items-center gap-2">
-            {tabs.map(({ to, label, icon: Icon }) => (
-              <NavLink
-                key={to}
-                to={to}
-                className={({ isActive }) =>
-                  `group inline-flex items-center gap-2 rounded-full px-4 py-2 text-sm transition 
-                  ${isActive ? 'bg-white/15 text-white' : 'text-white/80 hover:text-white hover:bg-white/10'}`
-                }
-              >
-                <Icon className="h-4 w-4" />
-                {label}
-              </NavLink>
-            ))}
-          </nav>
-        </div>
+    <header className="sticky top-0 z-40 w-full backdrop-blur bg-white/60 border-b border-white/20">
+      <div className="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between">
+        <a href="#home" className="flex items-center gap-2">
+          <div className="h-9 w-9 rounded-xl bg-gradient-to-br from-[#43A047] to-[#1976D2] grid place-items-center text-white">
+            <Leaf size={18} />
+          </div>
+          <span className="font-semibold text-lg tracking-tight">Yukti</span>
+        </a>
+        <nav className="hidden md:flex items-center gap-6 text-sm">
+          <a href="#home" className="flex items-center gap-1.5 text-slate-700 hover:text-slate-900 transition"><Home size={16}/>Home</a>
+          <a href="#jobs" className="flex items-center gap-1.5 text-slate-700 hover:text-slate-900 transition"><Briefcase size={16}/>Jobs</a>
+          <a href="#trade" className="flex items-center gap-1.5 text-slate-700 hover:text-slate-900 transition"><TrendingUp size={16}/>Trade</a>
+          <a href="#verify" className="flex items-center gap-1.5 text-slate-700 hover:text-slate-900 transition"><ShieldCheck size={16}/>Verify</a>
+        </nav>
+        <a href="#get-started" className="inline-flex items-center gap-2 px-3 py-2 rounded-xl text-white text-sm font-medium bg-gradient-to-r from-[#43A047] to-[#1976D2] shadow hover:opacity-95 transition">
+          Get Started
+        </a>
       </div>
-
-      {/* Mobile tabs */}
-      <div className="md:hidden border-t border-white/10">
-        <div className="grid grid-cols-4">
-          {tabs.slice(0, 4).map(({ to, label, icon: Icon }) => (
-            <NavLink
-              key={to}
-              to={to}
-              className={({ isActive }) =>
-                `flex flex-col items-center justify-center py-3 text-xs ${isActive ? 'text-white' : 'text-white/70'}`
-              }
-            >
-              <Icon className="h-4 w-4 mb-1" />
-              {label}
-            </NavLink>
-          ))}
-        </div>
-        <div className="grid grid-cols-3 border-t border-white/10">
-          {tabs.slice(4).map(({ to, label, icon: Icon }) => (
-            <NavLink
-              key={to}
-              to={to}
-              className={({ isActive }) =>
-                `flex flex-col items-center justify-center py-3 text-xs ${isActive ? 'text-white' : 'text-white/70'}`
-              }
-            >
-              <Icon className="h-4 w-4 mb-1" />
-              {label}
-            </NavLink>
-          ))}
-        </div>
-      </div>
-    </div>
+    </header>
   );
 }
